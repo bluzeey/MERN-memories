@@ -8,7 +8,7 @@ const Form=({currentId,setCurrentId})=>{
     const [postData,setPostData]=useState({
         creator:'',title:'',message:'',tags:'',selectedFile:''
     })
-    const post=useSelector((state)=> currentId ? state.posts.find((p)=> p._id== currentId):null);
+    const post=useSelector((state)=> currentId ? state.posts.find((p)=> p._id===currentId):null);
     const classes= useStyles()
     const dispatch=useDispatch()
 
@@ -22,8 +22,15 @@ const Form=({currentId,setCurrentId})=>{
             dispatch(updatePost(currentId,postData))
         }else{
         dispatch(createPost(postData))}
+
+        clear();
     }
-    const clear=()=>{}
+    const clear=()=>{
+      setCurrentId(null)
+      setPostData({
+        creator:'',title:'',message:'',tags:'',selectedFile:''
+    })
+    }
     return (
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>

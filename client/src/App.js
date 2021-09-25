@@ -14,7 +14,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(getPosts())
-    }, [dispatch])
+    }, [dispatch,currentId])
     return (
         <Container maxwidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
@@ -25,7 +25,7 @@ const App = () => {
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+                    <Grid container className={classes.mainContainer} justify="space-between" alignItems="stretch" spacing={3}>
                         <Grid item xs={12} sm={7}>
                           <Posts setCurrentId={setCurrentId}/>
                         </Grid>
